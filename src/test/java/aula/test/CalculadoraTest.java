@@ -1,7 +1,11 @@
 package aula.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class CalculadoraTest {
@@ -25,7 +29,44 @@ class CalculadoraTest {
 			
 			assertEquals(valorEsperado, valorAtual, "Resultado atual difere do esperado!");
 		}
+		
+		@Test
+		@DisplayName("CT001.02 - Teste Soma Valores Negativos")
+		void testeSoma02() {
+			int valorEsperado = -27;
+			int valorAtual = calc.somar(-12, -15);
+			
+			assertEquals(valorEsperado, valorAtual, "Resultado atual difere do esperado!");
+		}
+	}
+	
+	@Nested
+	@DisplayName("Cenario002 - Teste Subtracao")
+	class testeSubritacao {
+		
+		@Test
+		@DisplayName("CT002-01 - Teste Subtrair Positivo e Negativo")
+		void testeSubtrair01() {
+			int valorEsperado = 80;
+			int valorAtual = calc.subtrair(50, -30);
+			
+			assertEquals(valorEsperado, valorAtual, "Resultado atual difere do esperado");
+		}
+		
+		@Test
+		@DisplayName("CT002-02 - Teste Subtrair Zero e Positivo")
+		void testeSubtrair02() {
+			int valorEsperado = 30;
+			int valorAtual = calc.subtrair(0, -30);
+			
+			assertEquals(valorEsperado, valorAtual, "Resultado atual difere do esperado");
+		}
 	}
 	
 	
+	
+	@AfterEach
+	void end() {
+		System.out.println("----FIM DO METODO----");
+	}
 }
