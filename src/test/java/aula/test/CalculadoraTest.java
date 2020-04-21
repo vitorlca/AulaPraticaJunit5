@@ -2,6 +2,7 @@ package aula.test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -75,7 +76,26 @@ class CalculadoraTest {
 				() -> assertEquals(0, calc.mutiplicar(20, 0))
 				);
 	}
-	
+	@Nested
+	@DisplayName("Cenario004 - Teste Divisao")
+	class testeDivisao {
+		
+		@Test
+		@DisplayName("CT004-01 - Teste Divisao Valores Diferente de Zero")
+		void testeDivisao01() {
+			double valorEsperado = 7;
+			double valorAtual = calc.dividir(14, 2);
+			
+			assertEquals(valorEsperado, valorAtual, "Resultado atual difere do esperado");
+		}
+		
+		@Test
+		@DisplayName("CT004-02 - Teste Divisao com Zero")
+		void testeDivisao02() {
+			assertThrows(ArithmeticException.class, () -> calc.dividir(5,0), "Impossivel Dividir por Zero");
+		}
+		
+	}
 	
 	
 	@AfterEach
