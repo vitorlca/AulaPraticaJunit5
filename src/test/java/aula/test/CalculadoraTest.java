@@ -1,5 +1,6 @@
 package aula.test;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterEach;
@@ -61,6 +62,18 @@ class CalculadoraTest {
 			
 			assertEquals(valorEsperado, valorAtual, "Resultado atual difere do esperado");
 		}
+	}
+	
+	@Test
+	@DisplayName("Cenario003 - Teste Multiplicacao Varios Valores")
+	void testeMultiplicaNValores() {
+		assertAll(
+				() -> assertEquals(-4, calc.mutiplicar(2, -2)),
+				() -> assertEquals(14, calc.mutiplicar(7, 2)),
+				() -> assertEquals(-18, calc.mutiplicar(-3, 6)),
+				() -> assertEquals(30, calc.mutiplicar(-6, -5)),
+				() -> assertEquals(0, calc.mutiplicar(20, 0))
+				);
 	}
 	
 	
